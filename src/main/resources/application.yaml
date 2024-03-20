@@ -13,6 +13,6 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${POSTGRES_DB:dogrepositorydb}
-    username: ${POSTGRES_USER:admin}
-    password: ${POSTGRES_PASSWORD:password}
+    url: jdbc:postgresql://${DATABASE_HOST:dpg-cns50mf109ks73fj425g-a}:${DATABASE_PORT:5432}/${POSTGRES_DB:dogrepositorydb}
+    username: ${POSTGRES_USER:ines}
+    password: ${POSTGRES_PASSWORD:22c4yghuivDQ2RbVJB3alUHI2jx2dz9P}

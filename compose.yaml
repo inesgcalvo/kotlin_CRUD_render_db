@@ -2,11 +2,11 @@ version: "3.9"
 services:
   postgres:
     image: postgres:15.4
-    container_name: dogrepositorydb
-    hostname: postgres
+    container_name: dogrepositoryrenderdb
+    hostname: dpg-cns50mf109ks73fj425g-a
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: ines
+      POSTGRES_PASSWORD: 22c4yghuivDQ2RbVJB3alUHI2jx2dz9P
       POSTGRES_DB: dogrepositorydb
     ports:
       - "5432:5432"

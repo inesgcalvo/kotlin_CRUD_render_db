@@ -1,1 +1,1 @@
-rootProject.name = "kotlin_CRUD_local_db"
+rootProject.name = "kotlin_CRUD_render_db"
