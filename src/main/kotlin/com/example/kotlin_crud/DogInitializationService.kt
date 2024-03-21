@@ -2,7 +2,7 @@ package com.example.kotlin_crud
 
 import org.springframework.stereotype.Service
 import jakarta.annotation.PostConstruct
-import java.util.*
+import java.util.UUID
 
 @Service
 class DogInitializationService(
