@@ -11,8 +11,8 @@ jobs:
 
     env:
       REGISTRY: ghcr.io
-      IMAGE_LATEST_URL: ghcr.io/inesgcalvo/kotlin_CRUD_render_db:latest
-      IMAGE_COMMIT_SHA_URL: ghcr.io/inesgcalvo/kotlin_CRUD_render_db:${{ github.sha }}
+      IMAGE_LATEST_URL: ghcr.io/inesgcalvo/kotlin_crud_render_db:latest
+      IMAGE_COMMIT_SHA_URL: ghcr.io/inesgcalvo/kotlin_crud_render_db:${{ github.sha }}
 
     environment:
       name: production
@@ -38,7 +38,7 @@ jobs:
       - name: Build Docker images
         run: |
           docker build \
-          --build-arg JAR_FILE=build/libs/kotlin_crud_render_db-0.0.1-SNAPSHOT.jar \
+          --build-arg JAR_FILE=build/libs/kotlin_CRUD_render_db-0.0.1-SNAPSHOT.jar \
           -t ${{ env.IMAGE_LATEST_URL }} \
           -t ${{ env.IMAGE_COMMIT_SHA_URL }} \
           --platform=linux/amd64 \
