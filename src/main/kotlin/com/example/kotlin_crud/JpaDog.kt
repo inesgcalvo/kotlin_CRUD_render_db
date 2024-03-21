@@ -12,6 +12,7 @@ data class JpaDog(
     @Id
     @Column(nullable = false)
     var primary_key: Int,
+//    UUID
 
     @Column(nullable = false)
     var id: String?,
