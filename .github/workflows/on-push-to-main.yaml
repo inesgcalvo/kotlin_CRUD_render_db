@@ -16,7 +16,7 @@ jobs:
 
     environment:
       name: production
-#      url: https://code-sherpas-academy.onrender.com
+      url: https://code-sherpas-academy.onrender.com
 
     permissions:
       contents: read
@@ -57,11 +57,11 @@ jobs:
       - name: Push image with "latest" version
         run: docker push ${{ env.IMAGE_LATEST_URL }}
 
-#      - name: Trigger deploy in Render
-#        run: |
-#          status_code="$(curl --silent --output /dev/null --get -w "%{http_code}" --data-urlencode "imgURL=${{ env.IMAGE_COMMIT_SHA_URL }}" ${{ secrets.RENDER_DEPLOY_WEBHOOK }})"
-#          echo $status_code
-#          expected_status_code="200"
-#          if [ $status_code != $expected_status_code ]; then
-#          exit 1
-#          fi
+      - name: Trigger deploy in Render
+        run: |
+          status_code="$(curl --silent --output /dev/null --get -w "%{http_code}" --data-urlencode "imgURL=${{ env.IMAGE_COMMIT_SHA_URL }}" ${{ secrets.RENDER_DEPLOY_WEBHOOK }})"
+          echo $status_code
+          expected_status_code="200"
+          if [ $status_code != $expected_status_code ]; then
+          exit 1
+          fi
