@@ -14,11 +14,9 @@ class PostDogController(
                @RequestParam("birthDate") birthDate: String,
                @RequestParam("mother", required = false) mother: String?,
                @RequestParam("father", required = false) father: String?): JpaDog {
-        var lastId: Int = jpaDogRepository.findLastIdNumber()
-        val formattedId = String.format("%03d", ++lastId)
+        val selectedDog = jpaDogRepository.findByName(name)
         val dog = JpaDog(
-            primary_key = lastId,
-            id = formattedId,
+            id = selectedDog!!.id,
             name = name,
             breed = breed,
             birthdate = birthDate,
