@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 class PostDogController(
     private val jpaDogRepository: JpaDogRepository
 ) {
-    @PostMapping("/post/")
+    @PostMapping("/post")
     fun addDog(@RequestParam("name") name: String,
                @RequestParam("breed") breed: String,
                @RequestParam("birthDate") birthDate: String,
