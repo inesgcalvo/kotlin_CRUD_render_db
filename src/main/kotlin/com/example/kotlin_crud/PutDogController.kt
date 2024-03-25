@@ -10,7 +10,7 @@ class PutDogController(
     private val jpaDogRepository: JpaDogRepository
 ) {
 
-    @PutMapping("/dogs/{name}/")
+    @PutMapping("/dogs/{name}")
     fun updateDog(
         @PathVariable name: String,
         @RequestParam("newName") newName: String,
