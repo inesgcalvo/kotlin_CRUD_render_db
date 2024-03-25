@@ -9,7 +9,7 @@ class DelDogController(
     private val jpaDogRepository: JpaDogRepository
 ) {
 
-    @DeleteMapping("/del/{name}")
+    @DeleteMapping("/dogs/{name}")
     fun deleteDogByName(@PathVariable name: String): String {
         val dog = jpaDogRepository.findByName(name)
         return if (dog != null) {

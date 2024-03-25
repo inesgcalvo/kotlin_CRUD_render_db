@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 class GetDogByNameController(
     private val jpaDogRepository: JpaDogRepository
 ) {
-    @GetMapping("/get/{name}")
+    @GetMapping("/dogs/{name}")
     fun getDogByName(@PathVariable name: String): JpaDog? {
         return jpaDogRepository.findByName(name)
     }
