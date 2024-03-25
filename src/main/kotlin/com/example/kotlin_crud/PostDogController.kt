@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
+import java.util.UUID
 
 
 // http://127.0.0.1:8080/post/dog?name={NAME}&breed={BREED}&birthDate={BIRTHDATE}&mother={MOTHER}&father={FATHER}
@@ -20,14 +21,15 @@ class PostDogController(
                @RequestParam("mother", required = false) mother: String?,
                @RequestParam("father", required = false) father: String?): ResponseEntity<JpaDog> {
         try {
-            val selectedDog = jpaDogRepository.findByName(name)
+            val uuid: String = UUID.randomUUID().toString()
             val dog = JpaDog(
-                id = selectedDog!!.id,
+                id = UUID.fromString(uuid),
                 name = name,
                 breed = breed,
                 birthdate = birthDate,
                 mother = mother,
-                father = father)
+                father = father
+            )
             val savedDog = jpaDogRepository.save(dog)
             return ResponseEntity(savedDog, HttpStatus.CREATED)
         } catch (e: Exception) {
