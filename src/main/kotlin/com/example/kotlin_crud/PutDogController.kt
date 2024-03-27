@@ -13,34 +13,39 @@ import java.util.UUID
 // http://127.0.0.1:8080/dogs/{id}/?newName={NAME}2&breed={BREED}&birthDate={BIRTHDATE}&mother={MOTHER}&father={FATHER}
 
 @RestController
-class UpdateDogController(
+class PutDogController(
     private val jpaDogRepository: JpaDogRepository
 ) {
-    @PutMapping("/dogs/{id}")
+    @PutMapping("/dogs/{name}")
     fun updateDog(
-        @PathVariable("id") id: UUID,
-        @RequestBody dogRequest: DogRequest
+        @PathVariable name: String,
+        @RequestBody dogUpdateRequest: DogUpdateRequest
     ): ResponseEntity<JpaDog> {
-        val existingDog = jpaDogRepository.findById(id.toString())
-        return if (existingDog.isPresent) {
-            try {
-                val dog = existingDog.get().apply {
-                    name = dogRequest.name
-                    breed = dogRequest.breed
-                    birthdate = dogRequest.birthDate
-                    mother = dogRequest.mother
-                    father = dogRequest.father
-                }
-                val updatedDog = jpaDogRepository.save(dog)
-                ResponseEntity(updatedDog, HttpStatus.OK)
-            } catch (e: Exception) {
-                ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
-            }
-        } else {
-            ResponseEntity(HttpStatus.NOT_FOUND)
+        val selectedDog = jpaDogRepository.findByName(name)
+        if (selectedDog == null) {
+            return ResponseEntity(HttpStatus.NOT_FOUND)
         }
+
+        val updatedDog = selectedDog.copy(
+            name = dogUpdateRequest.newName,
+            breed = dogUpdateRequest.breed,
+            birthdate = dogUpdateRequest.birthDate,
+            mother = dogUpdateRequest.mother,
+            father = dogUpdateRequest.father
+        )
+
+        val savedDog = jpaDogRepository.save(updatedDog)
+        return ResponseEntity(savedDog, HttpStatus.OK)
     }
 }
+
+data class DogUpdateRequest(
+    val newName: String,
+    val breed: String?,
+    val birthDate: String?,
+    val mother: String?,
+    val father: String?
+)
 
 //@RestController
 //class PutDogController(
