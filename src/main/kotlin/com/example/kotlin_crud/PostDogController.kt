@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import java.util.UUID
 
-// http://127.0.0.1:8080/dogs?name={NAME}&breed={BREED}&birthDate={BIRTHDATE}&mother={MOTHER}&father={FATHER}
-
 @RestController
 class PostDogController(
     private val jpaDogRepository: JpaDogRepository

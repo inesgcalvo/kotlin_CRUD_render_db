@@ -3,15 +3,15 @@ package com.example.kotlin_crud
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
-
-// http://127.0.0.1:8080/get/{NAME}
+import java.util.UUID
+import java.util.Optional
 
 @RestController
-class GetDogByNameController(
+class GetDogByIdController(
     private val jpaDogRepository: JpaDogRepository
 ) {
-    @GetMapping("/dogs/{name}")
-    fun getDogByName(@PathVariable name: String): JpaDog? {
-        return jpaDogRepository.findByName(name)
+    @GetMapping("/dogs/{id}")
+    fun getDogById(@PathVariable id: UUID): Optional<JpaDog> {
+        return jpaDogRepository.findById(id.toString())
     }
 }

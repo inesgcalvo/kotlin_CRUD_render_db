@@ -1,23 +1,23 @@
 package com.example.kotlin_crud
 
-import org.springframework.web.bind.annotation.*
-
-// http://127.0.0.1:8080/del/{NAME}
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PathVariable
+import java.util.UUID
+import kotlin.NoSuchElementException
 
 @RestController
 class DelDogController(
     private val jpaDogRepository: JpaDogRepository
 ) {
-
-    @DeleteMapping("/dogs/{name}")
-    fun deleteDogByName(@PathVariable name: String): String {
-        val dog = jpaDogRepository.findByName(name)
-        return if (dog != null) {
-            jpaDogRepository.delete(dog)
-            "Dog with name $name deleted successfully."
+    @DeleteMapping("/dogs/{id}")
+    fun deleteDogById(@PathVariable id: UUID): String {
+        val dogOptional = jpaDogRepository.findById(id.toString())
+        return if (dogOptional.isPresent) {
+            jpaDogRepository.deleteById(id.toString())
+            "Dog with ID $id deleted successfully."
         } else {
-            throw NoSuchElementException("Dog with name $name not found")
-            "Dog with name $name not found"
+            throw NoSuchElementException("Dog with ID $id not found")
         }
     }
 }

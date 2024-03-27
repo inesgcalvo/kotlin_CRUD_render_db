@@ -8,7 +8,6 @@ import java.util.UUID
 
 @Entity(name = "dogrepository")
 @Table(name = "dogrepository", schema = "public")
-
 data class JpaDog(
     @Id
     @Column(nullable = false)
@@ -28,4 +27,15 @@ data class JpaDog(
 
     @Column(nullable = true)
     var father: String?
-)
+) {
+    fun copyWith(
+        newId: UUID = this.id,
+        newName: String = this.name,
+        newBreed: String? = this.breed,
+        newBirthdate: String? = this.birthdate,
+        newMother: String? = this.mother,
+        newFather: String? = this.father
+    ): JpaDog {
+        return JpaDog(newId, newName, newBreed, newBirthdate, newMother, newFather)
+    }
+}
