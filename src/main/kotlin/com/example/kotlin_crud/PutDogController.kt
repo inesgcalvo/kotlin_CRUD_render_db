@@ -10,34 +10,34 @@ import java.util.UUID
 
 @RestController
 class PutDogController(
-    private val jpaDogRepository: JpaDogRepository
+    private val dogRepository: DogRepository
 ) {
     @PutMapping("/dogs/{id}")
     fun updateDog(
         @PathVariable id: UUID,
         @RequestBody dogUpdateRequest: DogUpdateRequest
-    ): ResponseEntity<JpaDog> {
-        val selectedDogOptional = jpaDogRepository.findById(id.toString())
+    ): ResponseEntity<Dog> {
+        val selectedDogOptional = dogRepository.findById(id)
         if (selectedDogOptional.isEmpty) {
             return ResponseEntity(HttpStatus.NOT_FOUND)
         }
 
         val selectedDog = selectedDogOptional.get()
         val updatedDog = selectedDog.copyWith(
-            newName = dogUpdateRequest.newName,
+            newName = dogUpdateRequest.name,
             newBreed = dogUpdateRequest.breed,
             newBirthdate = dogUpdateRequest.birthDate,
             newMother = dogUpdateRequest.mother,
             newFather = dogUpdateRequest.father
         )
 
-        val savedDog = jpaDogRepository.save(updatedDog)
+        val savedDog = dogRepository.save(updatedDog)
         return ResponseEntity(savedDog, HttpStatus.OK)
     }
 }
 
 data class DogUpdateRequest(
-    val newName: String,
+    val name: String,
     val breed: String?,
     val birthDate: String?,
     val mother: String?,

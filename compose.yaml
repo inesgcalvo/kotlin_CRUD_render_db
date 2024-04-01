@@ -1,11 +1,6 @@
 version: "3.9"
 services:
-#  thedogapp:
-#    build: .
-#    ports:
-#      - "8080:8080"
-#    links:
-#      - postgres
+
   postgres:
     image: postgres:16.2
     container_name: dogrepositorydb_render

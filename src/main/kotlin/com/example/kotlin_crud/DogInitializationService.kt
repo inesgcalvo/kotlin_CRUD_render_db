@@ -6,7 +6,7 @@ import java.util.UUID
 
 @Service
 class DogInitializationService(
-    private val jpaDogRepository: JpaDogRepository
+    private val dogRepository: DogRepository
 ) {
     @PostConstruct
     fun init() {
@@ -16,7 +16,7 @@ class DogInitializationService(
         val uuid4: String = "2a61d082-7021-4e73-9434-08b708b6b548"
         val uuid5: String = "3baf7d0a-35ea-41e9-8156-98aab2d67b28"
 
-        val jpaDog = JpaDog(
+        val dog = Dog(
             id = UUID.fromString(uuid),
             name = "Gauss",
             breed = "German Shorthaired Pointer",
@@ -24,7 +24,7 @@ class DogInitializationService(
             mother = "Yara",
             father = null)
 
-        val jpaDog2 = JpaDog(
+        val dog2 = Dog(
             UUID.fromString(uuid2),
             "Manhattan",
             null,
@@ -32,7 +32,7 @@ class DogInitializationService(
             null,
             null)
 
-        val jpaDog3 = JpaDog(
+        val dog3 = Dog(
             UUID.fromString(uuid3),
             "Max",
             "Labrador Retriever",
@@ -40,7 +40,7 @@ class DogInitializationService(
             null,
             "Buddy")
 
-        val jpaDog4 = JpaDog(
+        val dog4 = Dog(
             UUID.fromString(uuid4),
             name = "Buddy",
             breed = "Golden Retriever",
@@ -48,7 +48,7 @@ class DogInitializationService(
             mother = null,
             father = null)
 
-        val jpaDog5 = JpaDog(
+        val dog5 = Dog(
             UUID.fromString(uuid5),
             "Bailey",
             "Beagle",
@@ -56,10 +56,10 @@ class DogInitializationService(
             null,
             null)
 
-        jpaDogRepository.save(jpaDog)
-        jpaDogRepository.save(jpaDog2)
-        jpaDogRepository.save(jpaDog3)
-        jpaDogRepository.save(jpaDog4)
-        jpaDogRepository.save(jpaDog5)
+        dogRepository.save(dog)
+        dogRepository.save(dog2)
+        dogRepository.save(dog3)
+        dogRepository.save(dog4)
+        dogRepository.save(dog5)
         }
     }

@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class GetAllDogsController(
-    private val jpaDogRepository: JpaDogRepository
+    private val dogRepository: DogRepository
 ) {
     @GetMapping("/dogs")
-    fun showThemAll(): MutableList<JpaDog> {
-        return jpaDogRepository.findAll()
+    fun showThemAll(): MutableList<Dog> {
+        return dogRepository.findAll()
     }
 }

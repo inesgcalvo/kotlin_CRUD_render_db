@@ -6,9 +6,9 @@ import jakarta.persistence.Id
 import jakarta.persistence.Table
 import java.util.UUID
 
-@Entity(name = "dogrepository")
-@Table(name = "dogrepository", schema = "public")
-data class JpaDog(
+@Entity(name = "dog")
+@Table(name = "dog", schema = "public")
+data class Dog(
     @Id
     @Column(nullable = false)
     var id: UUID,
@@ -35,7 +35,7 @@ data class JpaDog(
         newBirthdate: String? = this.birthdate,
         newMother: String? = this.mother,
         newFather: String? = this.father
-    ): JpaDog {
-        return JpaDog(newId, newName, newBreed, newBirthdate, newMother, newFather)
+    ): Dog {
+        return Dog(newId, newName, newBreed, newBirthdate, newMother, newFather)
     }
 }
